@@ -1,0 +1,7 @@
+{
+  "name": "weather-sweet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
