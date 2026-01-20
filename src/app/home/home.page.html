@@ -9,10 +9,14 @@
 
         <app-search-bar (search)="onSearch($event)" (gps)="onGps()"></app-search-bar>
 
-        <div *ngIf="weatherData" style="background: white; padding: 10px; margin-top: 20px; border-radius: 10px;">
-          <p>Ciudad: {{ weatherData.current.city }}</p>
-          <p>Temp: {{ weatherData.current.temp }}°C</p>
+        <div *ngIf="loading" class="ion-text-center ion-padding ion-margin-top">
+          <ion-spinner name="crescent" color="light"></ion-spinner>
         </div>
+
+        <app-current-weather 
+          *ngIf="weatherData && !loading" 
+          [current]="weatherData.current">
+        </app-current-weather>
 
       </ion-col>
     </ion-row>
