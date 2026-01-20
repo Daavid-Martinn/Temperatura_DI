@@ -1,0 +1,17 @@
+.section-title {
+  color: white;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.scroll-container {
+  display: flex;       /* Pone los elementos en fila */
+  overflow-x: auto;    /* Permite scroll horizontal */
+  padding-bottom: 10px; /* Espacio para que no corte la sombra */
+  
+  /* Ocultar barra de scroll fea en navegadores */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

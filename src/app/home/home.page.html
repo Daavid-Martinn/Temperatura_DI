@@ -13,10 +13,18 @@
           <ion-spinner name="crescent" color="light"></ion-spinner>
         </div>
 
-        <app-current-weather 
-          *ngIf="weatherData && !loading" 
-          [current]="weatherData.current">
-        </app-current-weather>
+        <ng-container *ngIf="weatherData && !loading">
+          
+          <app-current-weather 
+            [current]="weatherData.current">
+          </app-current-weather>
+
+          <app-forecast-list 
+            title="Próximas 24 Horas"
+            [items]="weatherData.forecast.slice(0, 8)">
+          </app-forecast-list>
+
+        </ng-container>
 
       </ion-col>
     </ion-row>

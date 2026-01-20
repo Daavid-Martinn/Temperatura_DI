@@ -1,3 +1,7 @@
-<p>
-  forecast-item works!
-</p>
+<div class="forecast-card glass-card ion-text-center">
+  <p class="time">{{ item.date | date:'HH:mm' }}</p>
+  
+  <img [src]="'https://openweathermap.org/img/wn/' + item.icon + '.png'" alt="weather icon">
+  
+  <p class="temp">{{ item.temp }}°</p>
+</div>

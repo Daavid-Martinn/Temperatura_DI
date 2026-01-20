@@ -1,0 +1,25 @@
+.forecast-card {
+  min-width: 70px; /* Ancho fijo para que queden iguales */
+  margin-right: 10px;
+  padding: 10px 5px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15); /* Un poco más transparente que la tarjeta grande */
+}
+
+.time {
+  font-size: 0.8rem;
+  color: #eee;
+  margin: 0;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
+
+.temp {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
