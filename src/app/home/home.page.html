@@ -1,20 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="8" size-lg="6" class="ion-padding">
+        
+        <h1 class="ion-text-center ion-text-light" style="margin-top: 40px;">
+          Weather <span style="font-weight: bold;">Sweet</span>
+        </h1>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+        <app-search-bar (search)="onSearch($event)" (gps)="onGps()"></app-search-bar>
+
+        <div *ngIf="weatherData" style="background: white; padding: 10px; margin-top: 20px; border-radius: 10px;">
+          <p>Ciudad: {{ weatherData.current.city }}</p>
+          <p>Temp: {{ weatherData.current.temp }}°C</p>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

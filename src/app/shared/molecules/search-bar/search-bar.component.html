@@ -1,0 +1,15 @@
+<div class="search-container glass-input">
+  <ion-button fill="clear" (click)="triggerGps()">
+    <ion-icon slot="icon-only" name="navigate"></ion-icon>
+  </ion-button>
+
+  <ion-input 
+    placeholder="Buscar ciudad..." 
+    [(ngModel)]="searchTerm"
+    (ionChange)="triggerSearch()" 
+    debounce="500"> </ion-input>
+
+  <ion-button fill="clear" (click)="triggerSearch()">
+    <ion-icon slot="icon-only" name="search"></ion-icon>
+  </ion-button>
+</div>
