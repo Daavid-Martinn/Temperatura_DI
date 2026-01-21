@@ -17,6 +17,7 @@ export interface CurrentWeather {
   uvIndex?: number; // Es opcional (?) porque a veces la API básica no lo trae
   feelsLike: number;
   date: Date;
+  precip?: number; 
 }
 
 // 3. Modelo para cada ítem de la predicción (horas o días)
@@ -27,5 +28,9 @@ export interface ForecastItem {
   tempMax?: number;
   icon: string;
   description: string;
-  isDailySummary?: boolean; // Un booleano extra que usaremos para pintar la lista
+  isDailySummary?: boolean;
+  windSpeed: number;
+  humidity: number;
+  feelsLike: number;
+  precip: number;
 }

@@ -1,0 +1,15 @@
+{
+  "SEARCH_PLACEHOLDER": "Buscar ciudad...",
+  "NEXT_24_HOURS": "Próximas 24 Horas",
+  "NEXT_DAYS": "Próximos Días",
+  "HUMIDITY": "Humedad",
+  "WIND": "Viento",
+  "RAIN": "Lluvia",
+  "FEELS_LIKE": "Sensación",
+  "UV_INDEX": "Índice UV",
+  "ERROR_TITLE": "¡Vaya!",
+  "ERROR_SUBTITLE": "No hemos encontrado resultados.",
+  "ERROR_NOT_FOUND": "No hemos encontrado la ciudad",
+  "ERROR_CONNECTION": "Error de conexión",
+  "ERROR_GPS": "No pudimos localizarte"
+}

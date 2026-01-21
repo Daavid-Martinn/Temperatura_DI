@@ -1,10 +1,13 @@
 <div class="forecast-section ion-margin-top">
-  <h3 class="section-title ion-padding-start">{{ title }}</h3>
+  <h3 class="section-title ion-padding-start" *ngIf="title">{{ title }}</h3>
   
   <div class="scroll-container ion-padding-start">
+    
     <app-forecast-item 
       *ngFor="let item of items" 
-      [item]="item">
+      [item]="item"
+      (click)="onItemClicked(item)">
     </app-forecast-item>
+
   </div>
 </div>

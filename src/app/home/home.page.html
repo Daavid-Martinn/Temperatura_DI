@@ -3,9 +3,30 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="12" size-md="8" size-lg="6" class="ion-padding">
         
-        <h1 class="ion-text-center ion-text-light" style="margin-top: 40px;">
-          Weather <span style="font-weight: bold;">Sweet</span>
-        </h1>
+        <div style="position: relative; margin-top: 40px; margin-bottom: 20px; height: 50px;">
+          
+          <h1 class="ion-text-light ion-text-center" style="margin: 0; line-height: 50px;">
+            ElTiempo <span style="font-weight: bold;">4v</span>
+          </h1>
+          
+          <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 999; display: flex; gap: 10px;">
+            
+            <img src="https://flagcdn.com/w40/es.png" 
+                 alt="Español"
+                 (click)="changeLanguage('es')" 
+                 [style.opacity]="currentLang === 'es' ? '1' : '0.4'"
+                 [style.transform]="currentLang === 'es' ? 'scale(1.3)' : 'scale(1)'"
+                 style="cursor: pointer; width: 32px; transition: 0.2s;">
+            
+            <img src="https://flagcdn.com/w40/gb.png" 
+                 alt="English"
+                 (click)="changeLanguage('en')" 
+                 [style.opacity]="currentLang === 'en' ? '1' : '0.4'"
+                 [style.transform]="currentLang === 'en' ? 'scale(1.3)' : 'scale(1)'"
+                 style="cursor: pointer; width: 32px; transition: 0.2s;">
+
+          </div>
+        </div>
 
         <app-search-bar (search)="onSearch($event)" (gps)="onGps()"></app-search-bar>
 
@@ -13,25 +34,78 @@
           <ion-spinner name="crescent" color="light"></ion-spinner>
         </div>
 
+        <div *ngIf="!loading && !weatherData && hasError" class="error-container ion-text-center ion-padding ion-margin-top">
+          <ion-icon name="thunderstorm-outline" class="sad-icon"></ion-icon>
+          <h2 class="ion-text-light">{{ 'ERROR_TITLE' | translate }}</h2>
+          <p class="ion-text-light" style="opacity: 0.8;">{{ 'ERROR_SUBTITLE' | translate }}</p>
+        </div>
+
         <ng-container *ngIf="weatherData && !loading">
           
-          <app-current-weather 
-            [current]="weatherData.current">
-          </app-current-weather>
+          <app-current-weather [current]="weatherData.current"></app-current-weather>
 
           <app-forecast-list 
-            title="Próximas 24 Horas"
-            [items]="weatherData.forecast.slice(0, 8)">
+            [title]="'NEXT_24_HOURS' | translate"
+            [items]="next24Hours"
+            (itemClick)="openForecastDetail($event)">
           </app-forecast-list>
 
-          <app-forecast-list 
-            title="Próximos Días"
-            [items]="weatherData.forecast.slice(8)">
-          </app-forecast-list>
+          <div *ngFor="let group of nextDaysGrouped" class="day-group">
+            <h3 class="day-title ion-padding-start">
+              {{ group.date | date:'EEEE, d MMMM':'':currentLang }}
+            </h3>
+            
+            <app-forecast-list 
+              [items]="group.items"
+              (itemClick)="openForecastDetail($event)">
+            </app-forecast-list>
+          </div>
 
         </ng-container>
 
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()" class="centered-modal">
+    <ng-template>
+      <div class="modal-content ion-padding" *ngIf="selectedForecast">
+        <div class="ion-text-center">
+          <h2>{{ selectedForecast.date | date:'EEEE, d MMMM':'':currentLang }}</h2>
+          <p>{{ selectedForecast.date | date:'HH:mm' }}</p>
+          <img [src]="'https://openweathermap.org/img/wn/' + selectedForecast.icon + '@4x.png'" style="width: 100px;">
+          <h1 style="font-size: 4rem; margin: 0;">{{ selectedForecast.temp }}°</h1>
+          <p style="text-transform: capitalize;">{{ selectedForecast.description }}</p>
+        </div>
+
+        <ion-grid class="ion-margin-top">
+          <ion-row>
+            <ion-col size="6" class="ion-text-center">
+              <ion-icon name="water-outline" style="font-size: 24px;"></ion-icon>
+              <p>{{ selectedForecast.humidity }}%</p>
+              <small>{{ 'HUMIDITY' | translate }}</small>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+              <ion-icon name="paper-plane-outline" style="font-size: 24px;"></ion-icon>
+              <p>{{ selectedForecast.windSpeed }} km/h</p>
+              <small>{{ 'WIND' | translate }}</small>
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-margin-top">
+            <ion-col size="6" class="ion-text-center">
+              <ion-icon name="rainy-outline" style="font-size: 24px;"></ion-icon>
+              <p>{{ selectedForecast.precip }}%</p>
+              <small>{{ 'RAIN' | translate }}</small>
+            </ion-col>
+            <ion-col size="6" class="ion-text-center">
+              <ion-icon name="thermometer-outline" style="font-size: 24px;"></ion-icon>
+              <p>{{ selectedForecast.feelsLike }}°</p>
+              <small>{{ 'FEELS_LIKE' | translate }}</small>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>
