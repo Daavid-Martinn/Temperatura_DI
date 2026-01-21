@@ -1,34 +1,50 @@
+/* Contenedor principal ya tiene la clase .glass-card del global */
+
 .city-name {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0;
-  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-top: 10px;
 }
 
 .date-text {
-  color: #eeeeee;
-  margin-top: 5px;
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Imagen del clima */
+img {
+  width: 150px;       /* Más grande */
+  height: 150px;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.3)); /* Resplandor */
+  margin: -20px 0;    /* Ajustar espacios */
 }
 
 .temp-big {
-  font-size: 5rem;
-  font-weight: 300;
+  font-size: 6rem;    /* GIGANTE */
+  font-weight: 200;   /* Fino y elegante */
   margin: 0;
-  color: white;
+  line-height: 1;
 }
 
 .description {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  text-transform: capitalize;
   margin-bottom: 20px;
-  color: #f0f0f0;
+  font-weight: 500;
 }
 
-ion-icon {
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+/* Iconos de abajo (Viento, Humedad) */
+ion-grid {
+  border-top: 1px solid rgba(255,255,255,0.2); /* Línea separadora sutil */
+  padding-top: 15px;
+  margin-top: 15px;
 }
 
 small {
-  color: #ddd;
-  display: block;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  opacity: 0.8;
+  letter-spacing: 1px;
 }

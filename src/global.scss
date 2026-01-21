@@ -1,12 +1,6 @@
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
 /* Core CSS required for Ionic components to work properly */
@@ -18,7 +12,7 @@
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* Optional CSS utils */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
@@ -27,11 +21,49 @@
 
 /**
  * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
+ * Lo dejamos comentado o activo según prefieras, pero nuestras reglas 
+ * de abajo van a sobrescribir el fondo para asegurar el diseño "Sweet".
  */
+/* @import '@ionic/angular/css/palettes/dark.system.css'; */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+
+/* ======================================================================
+   ESTILOS PERSONALIZADOS WEATHER SWEET
+   ====================================================================== */
+
+:root {
+  /* Definimos el degradado azul "Sweet" */
+  --sweet-gradient: linear-gradient(180deg, #2b5876 0%, #4e4376 100%);
+  
+  /* Color de texto base forzado a blanco para que se lea sobre el azul */
+  --ion-text-color: #ffffff;
+}
+
+/* Aplicamos el fondo a toda la aplicación */
+ion-content {
+  --background: var(--sweet-gradient) !important;
+  --color: #ffffff;
+}
+
+/* Clase para el efecto Vidrio (Glassmorphism) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.15); /* Blanco transparente */
+  backdrop-filter: blur(10px);            /* Difuminado */
+  -webkit-backdrop-filter: blur(10px);    /* Para Safari/iOS */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil brillante */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Forzar que todos los textos sean blancos para contraste */
+h1, h2, h3, h4, h5, h6, p, span, div, ion-label {
+  color: white;
+}
+
+/* Quitar la barra de scroll fea en las listas horizontales */
+::-webkit-scrollbar {
+  display: none;
+}

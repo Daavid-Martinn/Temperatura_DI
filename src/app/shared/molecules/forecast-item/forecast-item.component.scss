@@ -1,25 +1,32 @@
 .forecast-card {
-  min-width: 70px; /* Ancho fijo para que queden iguales */
-  margin-right: 10px;
-  padding: 10px 5px;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.15); /* Un poco más transparente que la tarjeta grande */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  min-width: 75px;        /* Ancho fijo */
+  padding: 15px 5px;
+  margin-right: 12px;
+  margin-bottom: 10px;    /* Separación vertical */
+  
+  background: rgba(0, 0, 0, 0.15); /* Fondo oscuro suave para contraste */
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .time {
-  font-size: 0.8rem;
-  color: #eee;
-  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
+  margin: 5px 0;
 }
 
 .temp {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: bold;
-  margin: 0;
-  color: white;
 }

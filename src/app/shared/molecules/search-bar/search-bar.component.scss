@@ -1,0 +1,22 @@
+.search-container {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25); /* Burbuja semi-transparente */
+  border-radius: 50px; /* Bordes muy redondos */
+  padding: 5px 10px;
+  margin-bottom: 30px; /* Espacio debajo */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+ion-input {
+  --color: white;
+  --placeholder-color: #ddd;
+  --placeholder-opacity: 0.8;
+  font-weight: 500;
+}
+
+ion-button {
+  --color: white;
+  --ripple-color: white;
+}
