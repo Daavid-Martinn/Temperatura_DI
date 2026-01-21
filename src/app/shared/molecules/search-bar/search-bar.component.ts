@@ -3,6 +3,10 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+// 1. Importamos los iconos que vamos a usar
+import { addIcons } from 'ionicons';
+import { search, locate } from 'ionicons/icons';
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -14,11 +18,13 @@ export class SearchBarComponent {
   
   searchTerm: string = '';
 
-  // Eventos para avisar al padre (Home)
   @Output() search = new EventEmitter<string>();
   @Output() gps = new EventEmitter<void>();
 
-  constructor() { }
+  constructor() {
+    // 2. Los registramos para que Ionic sepa dibujarlos
+    addIcons({ search, locate });
+  }
 
   triggerSearch() {
     if (this.searchTerm.trim().length > 0) {
