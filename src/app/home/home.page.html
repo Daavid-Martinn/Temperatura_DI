@@ -24,6 +24,11 @@
             [items]="weatherData.forecast.slice(0, 8)">
           </app-forecast-list>
 
+          <app-forecast-list 
+            title="Próximos Días"
+            [items]="weatherData.forecast.slice(8)">
+          </app-forecast-list>
+
         </ng-container>
 
       </ion-col>
