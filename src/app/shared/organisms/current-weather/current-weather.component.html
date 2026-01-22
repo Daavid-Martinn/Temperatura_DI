@@ -2,8 +2,7 @@
   
   <div class="ion-text-center">
     <h2 class="city-name">{{ current.city }}</h2>
-    <p class="date-text">{{ current.date | date:'fullDate':'':'es' }}</p>
-
+    <p class="date-text">{{ current.date | date:'fullDate':'':(current.uvIndex ? 'en' : 'es') }}</p> 
     <img [src]="'https://openweathermap.org/img/wn/' + current.icon + '@4x.png'" 
          alt="icono del clima">
 
@@ -13,41 +12,32 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      
       <ion-col size="4" class="ion-text-center">
         <ion-icon name="paper-plane-outline"></ion-icon>
         <p>{{ current.windSpeed }} km/h</p>
-        <small>Viento</small>
-      </ion-col>
+        <small>{{ 'WIND' | translate }}</small> </ion-col>
 
       <ion-col size="4" class="ion-text-center">
         <ion-icon name="rainy-outline"></ion-icon>
         <p>{{ current.precip }}%</p>
-        <small>Lluvia</small>
-      </ion-col>
+        <small>{{ 'RAIN' | translate }}</small> </ion-col>
 
       <ion-col size="4" class="ion-text-center">
         <ion-icon name="sunny-outline"></ion-icon>
         <p>{{ current.uvIndex }}</p>
-        <small>Indice UV</small>
-      </ion-col>
-
+        <small>{{ 'UV_INDEX' | translate }}</small> </ion-col>
     </ion-row>
 
     <ion-row class="ion-justify-content-center mt-2">
-      
       <ion-col size="4" class="ion-text-center">
         <ion-icon name="water-outline"></ion-icon>
         <p>{{ current.humidity }}%</p>
-        <small>Humedad</small>
-      </ion-col>
+        <small>{{ 'HUMIDITY' | translate }}</small> </ion-col>
 
       <ion-col size="4" class="ion-text-center">
         <ion-icon name="thermometer-outline"></ion-icon>
         <p>{{ current.feelsLike }}°</p>
-        <small>Sensación</small>
-      </ion-col>
-
+        <small>{{ 'FEELS_LIKE' | translate }}</small> </ion-col>
     </ion-row>
   </ion-grid>
 </div>
