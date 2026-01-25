@@ -6,12 +6,18 @@
 }
 
 .scroll-container {
-  display: flex;       /* Pone los elementos en fila */
-  overflow-x: auto;    /* Permite scroll horizontal */
-  padding-bottom: 10px; /* Espacio para que no corte la sombra */
-  
+  display: flex;
+  /* Pone los elementos en fila */
+  overflow-x: auto;
+  /* Permite scroll horizontal */
+  padding-bottom: 10px;
+  /* Espacio para que no corte la sombra */
+
   /* Ocultar barra de scroll fea en navegadores */
   &::-webkit-scrollbar {
     display: none;
   }
+
+  /* CRITICAL FIX: Permitir scroll vertical cuando se toca este contenedor */
+  touch-action: pan-y;
 }

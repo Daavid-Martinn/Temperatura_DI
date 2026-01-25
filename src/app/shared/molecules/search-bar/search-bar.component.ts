@@ -2,7 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Keyboard } from '@capacitor/keyboard';
 
+// 1. Importamos los iconos que vamos a usar
 // 1. Importamos los iconos que vamos a usar
 import { addIcons } from 'ionicons';
 import { search, locate } from 'ionicons/icons';
@@ -26,8 +28,14 @@ export class SearchBarComponent {
     addIcons({ search, locate });
   }
 
-  triggerSearch() {
+  async triggerSearch() {
     if (this.searchTerm.trim().length > 0) {
+      // Ocultar teclado si está abierto
+      try {
+        await Keyboard.hide();
+      } catch (e) {
+        // Ignorar error si no estamos en móvil
+      }
       this.search.emit(this.searchTerm);
     }
   }

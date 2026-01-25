@@ -1,33 +1,55 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .search-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Reparte el espacio */
-  
-  background: rgba(255, 255, 255, 0.2); /* Fondo semitransparente */
+  justify-content: space-between;
+  /* Reparte el espacio */
+
+  background: rgba(255, 255, 255, 0.2);
+  /* Fondo semitransparente */
   border-radius: 50px;
-  padding: 5px; /* Un poco de aire */
+  padding: 5px;
+  /* Un poco de aire */
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   margin-bottom: 30px;
+
+  /* Asegurar que esté por encima de todo */
+  position: relative;
+  z-index: 1000;
 }
 
 /* El input debe ocupar todo el espacio central disponible */
 .custom-input {
-  flex: 1; 
-  --color: white;
-  --placeholder-color: #eee;
-  --placeholder-opacity: 0.7;
-  --padding-start: 10px;
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 1rem;
   font-weight: 500;
+  padding: 10px;
+
+  /* Placeholder color */
+  &::placeholder {
+    color: #eeeeee;
+    opacity: 0.8;
+  }
 }
 
 /* Estilo para los botones de iconos */
 .icon-btn {
-  --color: white !important; /* Fuerza el color blanco */
+  --color: white !important;
+  /* Fuerza el color blanco */
   width: 45px;
   height: 45px;
-  --border-radius: 50%; /* Botones redondos */
+  --border-radius: 50%;
+  /* Botones redondos */
 }
 
 /* Si pasas el ratón por encima, que brille un poco */
@@ -36,5 +58,6 @@
 }
 
 ion-icon {
-  font-size: 22px; /* Tamaño visible */
+  font-size: 22px;
+  /* Tamaño visible */
 }

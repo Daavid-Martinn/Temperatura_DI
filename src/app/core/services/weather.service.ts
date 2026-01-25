@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, of } from 'rxjs';
+import { Observable, forkJoin, from, of } from 'rxjs';
+import { Platform } from '@ionic/angular';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { WeatherResult } from '../interfaces/weather-data'; 
+import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -12,30 +14,50 @@ export class WeatherService {
   
   private apiKey = environment.weatherApiKey;
   private baseUrl = environment.weatherApiUrl; 
-  private geoUrl = 'http://api.openweathermap.org/geo/1.0/direct';
+  private geoUrl = 'https://api.openweathermap.org/geo/1.0/direct';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private platform: Platform) { }
 
-  // 1. ACEPTAMOS EL PARÁMETRO LANG (Por defecto 'es')
+  // 1. HELPER PARA HACER PETICIONES NATIVAS (SOLUCIONA EL ERROR STATUS 0 EN ANDROID)
+  private nativeGet(url: string): Observable<any> {
+    // Si estamos en WEB (navegador), usamos HttpClient normal para evitar problemas de CORS/Headers de Capacitor
+    if (!this.platform.is('hybrid')) {
+      return this.http.get(url);
+    }
+
+    // Si estamos en NATIVO (Android/iOS), usamos CapacitorHttp
+    return from(CapacitorHttp.get({ url })).pipe(
+      map(response => {
+        if (response.status !== 200) {
+          throw new Error(JSON.stringify(response));
+        }
+        return response.data;
+      })
+    );
+  }
+
+  // 2. USAMOS nativeGet EN LUGAR DE this.http.get
   getWeatherByCity(city: string, lang: string = 'es'): Observable<WeatherResult | null> {
-    return this.http.get<any[]>(`${this.geoUrl}?q=${city}&limit=1&appid=${this.apiKey}`).pipe(
-      switchMap(geoData => {
+    const url = `${this.geoUrl}?q=${city}&limit=1&appid=${this.apiKey}`;
+    
+    return this.nativeGet(url).pipe(
+      switchMap((geoData: any) => {
         if (!geoData || geoData.length === 0) {
           return of(null);
         }
         const { lat, lon } = geoData[0];
-        // Pasamos el idioma a la siguiente función
         return this.getWeatherByCoords(lat, lon, lang);
       })
     );
   }
 
-  // 2. ACEPTAMOS EL PARÁMETRO LANG AQUÍ TAMBIÉN
   getWeatherByCoords(lat: number, lon: number, lang: string = 'es'): Observable<WeatherResult> {
-    
-    // 3. INYECTAMOS LA VARIABLE ${lang} EN LAS URLS (antes ponía lang=es fijo)
-    const currentReq = this.http.get(`${this.baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${this.apiKey}`);
-    const forecastReq = this.http.get(`${this.baseUrl}/forecast?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${this.apiKey}`);
+    // 3. AQUI TAMBIEN USAMOS nativeGet
+    const currentUrl = `${this.baseUrl}/weather?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${this.apiKey}`;
+    const forecastUrl = `${this.baseUrl}/forecast?lat=${lat}&lon=${lon}&units=metric&lang=${lang}&appid=${this.apiKey}`;
+
+    const currentReq = this.nativeGet(currentUrl);
+    const forecastReq = this.nativeGet(forecastUrl);
 
     return forkJoin([currentReq, forecastReq]).pipe(
       map((responses: any[]) => {

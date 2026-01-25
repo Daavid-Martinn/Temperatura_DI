@@ -34,7 +34,7 @@
 :root {
   /* Definimos el degradado azul "Sweet" */
   --sweet-gradient: linear-gradient(180deg, #2b5876 0%, #4e4376 100%);
-  
+
   /* Color de texto base forzado a blanco para que se lea sobre el azul */
   --ion-text-color: #ffffff;
 }
@@ -47,11 +47,15 @@ ion-content {
 
 /* Clase para el efecto Vidrio (Glassmorphism) */
 .glass-card {
-  background: rgba(255, 255, 255, 0.15); /* Blanco transparente */
-  backdrop-filter: blur(10px);            /* Difuminado */
-  -webkit-backdrop-filter: blur(10px);    /* Para Safari/iOS */
+  background: rgba(255, 255, 255, 0.15);
+  /* Blanco transparente */
+  backdrop-filter: blur(10px);
+  /* Difuminado */
+  -webkit-backdrop-filter: blur(10px);
+  /* Para Safari/iOS */
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Borde sutil brillante */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Borde sutil brillante */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   margin-bottom: 20px;
@@ -59,11 +63,21 @@ ion-content {
 }
 
 /* Forzar que todos los textos sean blancos para contraste */
-h1, h2, h3, h4, h5, h6, p, span, div, ion-label {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+ion-label {
   color: white;
 }
 
 /* Quitar la barra de scroll fea en las listas horizontales */
-::-webkit-scrollbar {
+/* Quitar la barra de scroll fea en las listas horizontales */
+/* ::-webkit-scrollbar {
   display: none;
-}
+} */

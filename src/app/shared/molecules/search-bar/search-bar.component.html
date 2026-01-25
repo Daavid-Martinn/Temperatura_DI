@@ -1,16 +1,11 @@
 <div class="search-container">
-  
+
   <ion-button fill="clear" (click)="triggerGps()" class="icon-btn">
     <ion-icon slot="icon-only" name="locate"></ion-icon>
   </ion-button>
 
-  <ion-input 
-    placeholder="Buscar ciudad..." 
-    [(ngModel)]="searchTerm"
-    (ionChange)="triggerSearch()" 
-    debounce="1000"
-    class="custom-input">
-  </ion-input>
+  <input type="text" placeholder="Buscar ciudad..." [(ngModel)]="searchTerm" (keyup.enter)="triggerSearch()"
+    class="custom-input native-input">
 
   <ion-button fill="clear" (click)="triggerSearch()" class="icon-btn">
     <ion-icon slot="icon-only" name="search"></ion-icon>

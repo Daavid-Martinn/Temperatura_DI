@@ -23,7 +23,10 @@ import { WeatherResult } from '../core/interfaces/weather-data';
   imports: [
     IonicModule, CommonModule, FormsModule, TranslateModule, // <--- IMPORTANTE
     SearchBarComponent, CurrentWeatherComponent, ForecastListComponent
-  ]
+  ],
+  host: {
+    class: 'ion-page'
+  }
 })
 export class HomePage {
 
@@ -85,6 +88,9 @@ export class HomePage {
       },
       error: (err) => {
         this.hasError = true;
+        // DEBUG: Mostrar error en alerta
+        alert('Error API: ' + JSON.stringify(err));
+        console.error(err);
         this.translate.get('ERROR_CONNECTION').subscribe(res => this.presentErrorToast(res));
         this.loading = false;
       }

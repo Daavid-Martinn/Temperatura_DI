@@ -1,9 +1,27 @@
 /* =========================================
    1. ESTILOS DE LA LISTA DE DÍAS
    ========================================= */
+
+
+// Forzar el fondo directamente (sin variables) para asegurar que se vea
+ion-content {
+  --background: linear-gradient(180deg, #2b5876 0%, #4e4376 100%) !important;
+}
+
+// Asegurar que el host también tenga el fondo por si acaso
+// Asegurar que el host también tenga el fondo por si acaso
+:host {
+  display: block;
+  height: 100%;
+  /* FIX: Forzar altura para que ion-content haga scroll */
+  background: linear-gradient(180deg, #2b5876 0%, #4e4376 100%);
+}
+
+
 .day-group {
   margin-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea sutil separadora */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  /* Línea sutil separadora */
   padding-top: 10px;
 }
 
@@ -22,50 +40,68 @@
 /* Clase específica para el modal centrado */
 .centered-modal {
   /* Hacemos que sea una caja flotante */
-  --height: auto;        /* La altura se adapta al contenido */
-  --width: 90%;          /* Ancho del 90% de la pantalla */
-  --max-width: 350px;    /* Que no sea gigante en PC */
-  --border-radius: 20px; /* Bordes redondos */
-  
+  --height: auto;
+  /* La altura se adapta al contenido */
+  --width: 90%;
+  /* Ancho del 90% de la pantalla */
+  --max-width: 350px;
+  /* Que no sea gigante en PC */
+  --border-radius: 20px;
+  /* Bordes redondos */
+
   /* Sombra potente para que parezca que flota */
   --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  
+
   /* Fondo con tu degradado bonito */
   --background: var(--sweet-gradient);
 }
 
 /* Contenido interno del modal */
 .modal-content {
-  background: transparent; /* Importante para ver el degradado */
+  background: transparent;
+  /* Importante para ver el degradado */
   color: white;
   text-align: center;
   padding-bottom: 20px;
-  
+
   /* Ajustes de texto */
-  h2 { font-weight: bold; }
-  small { opacity: 0.7; }
+  h2 {
+    font-weight: bold;
+  }
+
+  small {
+    opacity: 0.7;
+  }
 }
+
 /* home.page.scss */
 
 /* Contenedor de las banderas */
 .lang-flags {
   display: flex;
-  gap: 15px; /* Separación entre banderas */
-  background: rgba(255, 255, 255, 0.2); /* Un fondito semitransparente para ver dónde están */
+  gap: 15px;
+  /* Separación entre banderas */
+  background: rgba(255, 255, 255, 0.2);
+  /* Un fondito semitransparente para ver dónde están */
   padding: 5px 10px;
   border-radius: 20px;
 }
 
 .lang-flags span {
-  font-size: 2rem; /* ¡Más grandes! */
+  font-size: 2rem;
+  /* ¡Más grandes! */
   cursor: pointer;
-  opacity: 0.5;    /* Un poco transparentes si no están activas */
+  opacity: 0.5;
+  /* Un poco transparentes si no están activas */
   transition: transform 0.2s;
 }
 
 /* Cuando la bandera está activa */
 .lang-flags span.active {
-  opacity: 1;           /* Totalmente visible */
-  transform: scale(1.3); /* Un 30% más grande */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Brillito alrededor */
+  opacity: 1;
+  /* Totalmente visible */
+  transform: scale(1.3);
+  /* Un 30% más grande */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  /* Brillito alrededor */
 }
